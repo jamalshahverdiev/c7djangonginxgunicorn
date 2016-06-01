@@ -1,0 +1,12 @@
+[Unit]
+Description=pythongunicorn daemon
+After=network.target
+
+[Service]
+User=root
+Group=nginx
+WorkingDirectory=/var/www/python.lan
+ExecStart=/var/www/python.lan/python.lanenv/bin/gunicorn --workers 3 --bind unix:/var/www/python.lan/python.sock python.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
